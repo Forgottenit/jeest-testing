@@ -3,7 +3,8 @@
  */
 const {
     game,
-    newGame
+    newGame,
+    showScore
 } = require("../game");
 
 
@@ -38,17 +39,21 @@ describe("newGame works correctly", () => {
         game.score = 42;
         game.playerMoves = ["button1", "button2"];
         game.currentGame = ["button1", "button2"];
+        document.getElementById("score").innerText = "42";
         newGame();
     });
     test("should set game score to zero", () => {
         expect(game.score).toEqual(0)
     });
-    test("should set playerMoves to zero", () => {
+    test("should empty playerMoves array", () => {
         expect(game.playerMoves).toEqual([])
     });
     // checking the length of the array is zero, could use toBe instead of toEqual
-    test("should set currentGame to zero", () => {
+    test("should clear the computer sequence array", () => {
         expect(game.currentGame.length).toEqual(0)
+    });
+    test("should display 0 for the element with id score", () => {
+        expect(document.getElementById("score").innerText).toBe(0);
     });
 
 });
